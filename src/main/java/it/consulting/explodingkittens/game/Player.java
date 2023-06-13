@@ -4,24 +4,19 @@ import it.consulting.explodingkittens.card.Card;
 import it.consulting.explodingkittens.card.special.DefuseCard;
 import it.consulting.explodingkittens.card.special.ExplodingKittenCard;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Hand {
+public class Player {
     private List<Card> cards;
     private Deck deck;
+    private boolean isAlive;
 
-    public Hand(Deck deck) {
+    public Player(Deck deck) {
         this.deck = deck;
-    }
-
-    public void startGame() {
-        //aggiungo alla mano un defuse e quattro carte pescate dal mazzo
-        cards.add(new DefuseCard());
-        cards.add(getRandomCart());
-        cards.add(getRandomCart());
-        cards.add(getRandomCart());
-        cards.add(getRandomCart());
+        cards = getInitialCards();
+        isAlive = true;
     }
 
     public void drawCard(Card card) {
@@ -38,14 +33,27 @@ public class Hand {
         return cards;
     }
 
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    private List<Card> getInitialCards() {
+        cards = new ArrayList<>();
+        //aggiungo alla mano un defuse e quattro carte pescate dal mazzo
+        cards.add(new DefuseCard());
+        cards.add(getRandomCart());
+        cards.add(getRandomCart());
+        cards.add(getRandomCart());
+        cards.add(getRandomCart());
+        System.out.println("Carte: " + cards);
+        return cards;
+    }
+
     private Card getRandomCart() {
         Random rand = new Random();
         Card card =  deck.getCards().get(rand.nextInt(deck.getCards().size()));
-        //se pesca un gatto esplosivo ripete l'azione
-        if (!(card instanceof ExplodingKittenCard)) {
-            return card;
-        } else {
-            return getRandomCart();
-        }
+        deck.drawFromDeck(card);
+        System.out.println(deck.getCards().size());
+        return card;
     }
 }

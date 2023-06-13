@@ -7,10 +7,11 @@ import it.consulting.explodingkittens.card.special.DefuseCard;
 import it.consulting.explodingkittens.card.special.ExplodingKittenCard;
 import it.consulting.explodingkittens.game.util.DeckUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Deck {
-    private List<Card> cards;
+    private List<Card> cards = new ArrayList<>();
     private int numberOfPlayers;
     public static final int FOUR_QTY = 4;
     public static final int FIVE_QTY = 5;
@@ -40,22 +41,20 @@ public class Deck {
         //Inserisco tutte le carte gatto nel mazzo
         addCardsToDeck(FOUR_QTY, new CattermelonCart());
         addCardsToDeck(FOUR_QTY, new TacoCatCard());
-        addCardsToDeck(FOUR_QTY, new BeardedCat());
+        addCardsToDeck(FOUR_QTY, new BeardedCatCard());
         addCardsToDeck(FOUR_QTY, new PotatoCatCard());
         addCardsToDeck(FOUR_QTY, new RainbowCatCard());
-
-        //Inserisco i gatti esplosivi e i defuse in base al numero di giocatori
-        addCardsToDeck(DeckUtil.setExplodingKittensQty(numberOfPlayers), new ExplodingKittenCard());
-        addCardsToDeck(DeckUtil.setDefuseQty(numberOfPlayers), new DefuseCard());
     }
 
     public List<Card> getCards() {
         return cards;
     }
 
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
     private void addCardsToDeck(int numberOfCards, Card cardType) {
-        for (int i = 0; i < numberOfCards; i++) {
-            cards.add(cardType);
-        }
+        DeckUtil.addCardsToDeck(cards, numberOfCards, cardType);
     }
 }

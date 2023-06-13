@@ -1,8 +1,8 @@
 package it.consulting.explodingkittens.card.cat;
 
-public class RainbowCatCard extends CatCard {
+public class BeardedCatCard extends CatCard {
     @Override
     public String toString() {
-        return "Rainbow cat";
+        return "Bearded cat";
     }
 }
