@@ -11,13 +11,8 @@ public class Game {
     private List<Player> players = new ArrayList<>();
     private Deck deck;
 
-    public void addPlayer(Player player) {
-        players.add(player);
-    }
-
     public void startGame(int numberOfPlayers) {
         deck = new Deck(numberOfPlayers);
-        System.out.println(deck.getCards());
         for (int i = 0; i < numberOfPlayers; i++) {
             players.add(new Player(deck));
             System.out.println("Player " + (i+1) + ": " + players.get(i).getCards());
@@ -29,7 +24,6 @@ public class Game {
         deck.setCards(DeckUtil.addCardsToDeck(deck.getCards(),
                 DeckUtil.setDefuseQty(numberOfPlayers),
                 new DefuseCard()));
-        System.out.println(deck.getCards().size());
     }
 
     public static void main(String[] args) {

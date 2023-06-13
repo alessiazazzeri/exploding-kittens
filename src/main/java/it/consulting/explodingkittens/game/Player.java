@@ -45,7 +45,6 @@ public class Player {
         cards.add(getRandomCart());
         cards.add(getRandomCart());
         cards.add(getRandomCart());
-        System.out.println("Carte: " + cards);
         return cards;
     }
 
@@ -53,7 +52,6 @@ public class Player {
         Random rand = new Random();
         Card card =  deck.getCards().get(rand.nextInt(deck.getCards().size()));
         deck.drawFromDeck(card);
-        System.out.println(deck.getCards().size());
         return card;
     }
 }
