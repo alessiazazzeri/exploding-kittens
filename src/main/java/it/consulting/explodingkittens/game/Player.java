@@ -33,6 +33,10 @@ public class Player {
         return cards;
     }
 
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
